@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="Contacts.css"/>
+    <script src="contacts.js"></script>
+    <title>Gestion des contacts</title>
+</head>
+<body onload="init()">
+<p class="binome">Réalisée par : Alonzo Mathon 1G</p> 
+<h1>Gestion des contacts</h1>
+<p class="centre">
+<select name="contact" id="contacts" onchange="rafraichir(this.value)">
+    <option value="-2">Choisissez un contact...</option> 
+    <option value="-1">Nouveau contact...</option> 
+</select>
+</p>
+<table id="tForm">
+    <tbody>
+    <tr><th>Nom</th><th>Prénom</th><th>Téléphone</th></tr>
+    <tr>
+        <td><input type="text" id="nom" value=""/></td>
+        <td><input type="text" id="prénom" value=""/></td>
+        <td><input type="text" id="tél" value=""/></td>
+    </tr>
+    </tbody>
+</table>
+<p class="centre" id="pBoutons">
+    <input type="button" value="Valider" onclick="validerForm('valider')"/>
+    <input type="button" value="Effacer" onclick="validerForm('effacer')"/>
+</p>
+</body> 
+</html>

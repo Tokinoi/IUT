@@ -1,0 +1,5 @@
+zadd 100 lorem
+zadd 200 ipsum
+zadd 150 dolor
+zadd 350 sit
+zrangebyscore 100 300

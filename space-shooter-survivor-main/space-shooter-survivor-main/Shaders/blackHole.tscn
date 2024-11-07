@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://dqu43ugp68gvp"]
+
+[ext_resource type="Script" path="res://Shaders/blackHole.gd" id="1_hon62"]
+[ext_resource type="Shader" path="res://Shaders/blackHole.gdshader" id="1_wivw0"]
+[ext_resource type="Texture2D" uid="uid://bbp56gl52e5fg" path="res://Assets/Shapes/black-circle.png" id="2_egfop"]
+
+[sub_resource type="Curve" id="Curve_fo8fa"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.0710744, -0.0545454), 0.0, 0.0, 0, 0, Vector2(0.170248, 0.545455), -7.7, -7.7, 0, 0, Vector2(0.272727, -0.0727272), 0.0, 0.0, 0, 0, Vector2(0.398323, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_rerlv"]
+curve = SubResource("Curve_fo8fa")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_he7p6"]
+shader = ExtResource("1_wivw0")
+shader_parameter/strength = 0.5
+shader_parameter/curve = SubResource("CurveTexture_rerlv")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p45md"]
+radius = 43.0116
+
+[node name="BlackHole" type="Node2D"]
+z_index = 3000
+script = ExtResource("1_hon62")
+
+[node name="BlackHole" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_he7p6")
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+
+[node name="Black-circle" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_egfop")
+
+[node name="InnerArea2D" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InnerArea2D"]
+shape = SubResource("CircleShape2D_p45md")
+
+[connection signal="area_entered" from="InnerArea2D" to="." method="_on_inner_area_2d_area_entered"]
+[connection signal="body_entered" from="InnerArea2D" to="." method="_on_inner_area_2d_body_entered"]

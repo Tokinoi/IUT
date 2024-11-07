@@ -1,0 +1,11 @@
+Model Information:
+* title:	Abrams M1A1 [Free]
+* source:	https://sketchfab.com/3d-models/abrams-m1a1-free-1b4a0b196df14e67bce38ed6fef7d944
+* author:	DerpDude (https://sketchfab.com/mansoorsajidp)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Abrams M1A1 [Free]" (https://sketchfab.com/3d-models/abrams-m1a1-free-1b4a0b196df14e67bce38ed6fef7d944) by DerpDude (https://sketchfab.com/mansoorsajidp) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

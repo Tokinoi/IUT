@@ -1,0 +1,150 @@
+[gd_scene load_steps=17 format=3 uid="uid://doxacyfl1irdd"]
+
+[ext_resource type="Script" path="res://Entities/playerRoid.gd" id="1_wgkc5"]
+[ext_resource type="Texture2D" uid="uid://d2hyhs002kcfl" path="res://Assets/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Engine Effects/PNGs/Main Ship - Engines - Supercharged Engine - Spritesheet.png" id="2_kwn72"]
+[ext_resource type="Texture2D" uid="uid://t6d3o1ku7edo" path="res://Assets/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Engines/PNGs/Main Ship - Engines - Supercharged Engine.png" id="3_a8xvu"]
+[ext_resource type="Texture2D" uid="uid://cd62tvm42jksf" path="res://Assets/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Bases/PNGs/Main Ship - Base - Full health.png" id="4_4pu3v"]
+[ext_resource type="Texture2D" uid="uid://carg2gphfcvjf" path="res://Assets/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Bases/PNGs/Main Ship - Base - Slight damage.png" id="5_hevpx"]
+[ext_resource type="Texture2D" uid="uid://b18ov8lpigb1g" path="res://Assets/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Bases/PNGs/Main Ship - Base - Very damaged.png" id="6_ltb0j"]
+[ext_resource type="Texture2D" uid="uid://dlqvm6vc8w072" path="res://Assets/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Bases/PNGs/Main Ship - Base - Damaged.png" id="7_rki7n"]
+[ext_resource type="Script" path="res://Entities/PlayerCamera2D.gd" id="8_ygfle"]
+[ext_resource type="Texture2D" uid="uid://tbkqvg8rhvrn" path="res://Assets/tp assets/light.png" id="9_mn8ee"]
+[ext_resource type="AudioStream" uid="uid://bmk71611lh5lc" path="res://Assets/Sound/blaster-shot.wav" id="10_1qqiv"]
+[ext_resource type="AudioStream" uid="uid://dhyjgbafd1nc" path="res://Assets/Sound/blaster-mine.wav" id="11_amnue"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gq06b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_4pu3v")
+}],
+"loop": true,
+"name": &"full",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_hevpx")
+}],
+"loop": true,
+"name": &"high",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ltb0j")
+}],
+"loop": true,
+"name": &"low",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_rki7n")
+}],
+"loop": true,
+"name": &"mid",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_a1r8x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_c47od"]
+resource_name = "boost"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 5, 7]
+}
+
+[sub_resource type="Animation" id="Animation_v8rfr"]
+resource_name = "fly"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e2hqy"]
+_data = {
+"RESET": SubResource("Animation_a1r8x"),
+"boost": SubResource("Animation_c47od"),
+"fly": SubResource("Animation_v8rfr")
+}
+
+[node name="RigidBody2D" type="RigidBody2D" groups=["player"]]
+mass = 0.5
+gravity_scale = 0.0
+can_sleep = false
+angular_velocity = 0.1
+script = ExtResource("1_wgkc5")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(0.2, 0.2)
+polygon = PackedVector2Array(120, 88, 120, 40, 0, -104, -120, 40, -120, 88)
+
+[node name="EngineEffects" type="Sprite2D" parent="."]
+position = Vector2(3.23653e-05, 2.61068e-05)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("2_kwn72")
+hframes = 4
+vframes = 2
+
+[node name="Engine" type="Sprite2D" parent="."]
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("3_a8xvu")
+
+[node name="ASBase" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.6, 1.6)
+sprite_frames = SubResource("SpriteFrames_gq06b")
+animation = &"full"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+script = ExtResource("8_ygfle")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.5
+texture = ExtResource("9_mn8ee")
+texture_scale = 5.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../EngineEffects")
+libraries = {
+"": SubResource("AnimationLibrary_e2hqy")
+}
+
+[node name="BlasterPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_1qqiv")
+
+[node name="MinePlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_amnue")

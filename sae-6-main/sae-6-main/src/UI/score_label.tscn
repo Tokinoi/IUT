@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c724y5m6b3y30"]
+
+[node name="ScoreLabel" type="RichTextLabel"]
+custom_minimum_size = Vector2(0, 20)
+fit_content = true
+scroll_active = false

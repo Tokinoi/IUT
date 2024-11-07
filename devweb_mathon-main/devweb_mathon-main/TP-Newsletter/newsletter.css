@@ -1,0 +1,63 @@
+/* Feuille de style pour Gigondas  */
+
+body {
+	color: black; background: white; 
+	font-family:    Trebuchet MS, Cantarell, sans-serif;
+    padding: 5px 10px;
+    margin: 5px auto;
+    width: 1200px;
+}
+
+fieldset { width: 400px; margin: 20px auto; border: 1px solid #FF4E02; }
+
+legend {
+    padding: 3px 5px;
+    font-weight: bold;
+	color: white; background-color: #FF4E02; 
+}
+
+#bandeau { border-bottom: thin solid #2F3B53; margin-bottom: 1em; }
+#bandeau img { height: 2em; vertical-align: middle; }
+#titre { color: #2F3B53; margin-top: .7em; font-size: 2.5em; font-weight: bold; font-variant: small-caps; }
+
+h1 {
+    margin: 18px 0px;
+    padding: 10px 5px;
+	font-size: 1.2em;
+	color: white;
+	background: #FF4E02; 
+	text-align: center;
+}
+
+a:link, a:visited { text-decoration: none; font-weight: bold; color: #999999; }
+a:active  {text-decoration: none; color: black; }
+a:hover   {text-decoration: none; color:white; background: #999999; cursor: pointer; }
+
+th { color: white; background: #FF4E02; border: thin solid #E43134;}
+td { font-size: .92em; border: thin solid #E43134; }
+th, td { padding: 3px 5px; vertical-align: middle; }
+
+table { border-collapse: collapse; margin: 5px auto; }
+
+/* Couleur des lignes impaires */
+table.liste tr:nth-child(odd) { background-color: #DDDDDD; }
+
+table.formulaire td, table.formulaire th { border: none; padding: 5px 5px; }
+
+/* Pour les messages */
+p.message {
+    font-weight: bold;
+    text-align: center;
+    color: #29A329; background-color: #81F0BC;
+    border: 1px solid #29A329;
+    padding: 3px 5px;
+}
+
+p.erreur {
+    color: red; background-color: #FFA3A3;
+    border: 1px solid red;
+    padding: 3px 5px;
+}
+
+/* Pour les auteurs */
+p.binome { text-align: right; font-size: 0.8em; font-style: italic; padding-right: 10px; margin: 0px; } 

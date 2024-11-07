@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des rencontre{% endblock %}
+
+{% block body %}
+    <div class="d-flex flex-justify-content-center">
+        <h1 class="display-1 border border-dark rounded mx-auto mt-2 p-2">liste des Rencontres</h1>
+    </div>
+
+    {% if is_granted('ROLE_USER') %}
+        <a class="btn btn-outline-primary py-2 my-3" href="{{ path('app_rencontre_new') }}">Ajouter une nouvelle Rencontre</a>
+    {% endif %}
+
+    <table class="table table-striped">
+        <thead>
+            <tr class="table-primary">
+                <th>Id</th>
+                <th>Domicile_exterieur</th>
+                <th>Hote</th>
+                <th>Date_heure</th>
+                <th>Gymnase</th>
+                <th>Equipe adverse</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rencontre in rencontres %}
+            <tr>
+                <td class="align-middle">{{ rencontre.id }}</td>
+                <td class="align-middle">{{ rencontre.domicileExterieur ? 'Yes' : 'No' }}</td>
+                <td class="align-middle">{{ rencontre.hote }}</td>
+                <td class="align-middle">{{ rencontre.dateHeure ? rencontre.dateHeure|date('Y-m-d H:i:s') : '' }}</td>
+                <td class="align-middle">{{ rencontre.gymnase }}</td>
+                <td class="align-middle">{{ rencontre.equipeAdverse }}</td>
+                <td class="align-middle">
+                <div class="d-flex flex-column flex-justify-content-center flex-align-item-space-around">
+                        <a class="btn btn-outline-primary" href="{{ path('app_rencontre_show', {'id': rencontre.id}) }}">Afficher</a>
+                        {% if is_granted('ROLE_USER') %}
+                            <a class="btn btn-outline-secondary" href="{{ path('app_rencontre_edit', {'id': rencontre.id}) }}">Modifier</a>
+                        {% endif %}
+                    </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">Pas de données trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,151 @@
+[gd_scene load_steps=7 format=3 uid="uid://dlxtoka0x2jl3"]
+
+[ext_resource type="Script" path="res://src/UI/GameUI.gd" id="1_5wmv5"]
+[ext_resource type="FontFile" uid="uid://bs8d4fxqnev1b" path="res://assets/Fonts/ThaleahFat.ttf" id="1_xj0sd"]
+[ext_resource type="Script" path="res://src/UI/Leaderboard.gd" id="3_l14p8"]
+[ext_resource type="PackedScene" path="res://src/UI/score_label.tscn" id="4_2bjqh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gqxdr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mh438"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_5wmv5")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="SpawnDumbBtn" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_xj0sd")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gqxdr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mh438")
+text = "Spawn Dumb Bot"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="SpawnRandomBtn" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_xj0sd")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gqxdr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mh438")
+text = "Spawn Random Bot"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ShowNamesBtn" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_xj0sd")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gqxdr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mh438")
+text = "Hide Names"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ResetScoreBtn" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_xj0sd")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gqxdr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mh438")
+text = "Reset Score"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="GenerateMapBtn" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_xj0sd")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gqxdr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mh438")
+text = "Generate Map"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ShowBgBtn" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_xj0sd")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gqxdr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mh438")
+text = "Hide Background"
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Quit Game" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_xj0sd")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gqxdr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mh438")
+text = "EXIT TO MENU"
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Leaderboard" type="VBoxContainer" parent="Control/MarginContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(100, 200)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("3_l14p8")
+
+[node name="ScoreLabel" parent="Control/MarginContainer/Leaderboard" instance=ExtResource("4_2bjqh")]
+layout_mode = 2
+
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/SpawnDumbBtn" to="." method="_on_spawn_dumb_btn_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/SpawnRandomBtn" to="." method="_on_spawn_random_btn_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/ShowNamesBtn" to="." method="_on_show_names_btn_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/ResetScoreBtn" to="." method="_on_reset_score_btn_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/GenerateMapBtn" to="." method="_on_generate_map_btn_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/ShowBgBtn" to="." method="_on_show_bg_btn_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/Quit Game" to="." method="_on_quit_game_pressed"]

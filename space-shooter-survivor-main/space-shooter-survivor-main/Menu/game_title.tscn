@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://byrh5wtikrq4p"]
+
+[ext_resource type="Texture2D" uid="uid://yramnbqlnkhp" path="res://Textures/GameTitle.png" id="1_i2kfj"]
+
+[node name="GameTitle" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -236.0
+offset_top = -25.0
+offset_right = 238.0
+offset_bottom = 27.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(232, 27)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_i2kfj")

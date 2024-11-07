@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://dygh4bf4e6u00"]
+
+[ext_resource type="Script" path="res://Entities/grenade.gd" id="1_rsfk4"]
+[ext_resource type="Texture2D" uid="uid://x115f1kqviy4" path="res://Assets/Foozle_2DS0011_Void_MainShip/Main ship weapons/PNGs/Main ship weapon - Projectile - Big Space Gun.png" id="2_co6du"]
+[ext_resource type="Shader" path="res://Shaders/invertedCircle.gdshader" id="3_v0tqx"]
+[ext_resource type="Texture2D" uid="uid://bbp56gl52e5fg" path="res://Assets/Shapes/black-circle.png" id="4_3pca6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8aje6"]
+shader = ExtResource("3_v0tqx")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aiqyl"]
+
+[sub_resource type="Animation" id="Animation_3xbpy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_tjmf1"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uxo61"]
+_data = {
+"RESET": SubResource("Animation_3xbpy"),
+"idle": SubResource("Animation_tjmf1")
+}
+
+[node name="Grenade" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_rsfk4")
+
+[node name="InvertedCircle" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_8aje6")
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("4_3pca6")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0, 1, 1)
+texture = ExtResource("2_co6du")
+hframes = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_aiqyl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uxo61")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

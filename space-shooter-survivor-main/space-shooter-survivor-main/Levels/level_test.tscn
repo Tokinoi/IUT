@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://13pc61yoc6bc"]
+
+[ext_resource type="Script" path="res://Levels/levelTest.gd" id="1_1to3p"]
+[ext_resource type="PackedScene" uid="uid://ct1h3so7qsstl" path="res://Entities/player.tscn" id="1_l0aft"]
+[ext_resource type="Texture2D" uid="uid://fbuq5n4te1rm" path="res://Assets/tp assets/Space Background.png" id="2_04dnn"]
+[ext_resource type="PackedScene" uid="uid://doxacyfl1irdd" path="res://Entities/playerRoid.tscn" id="4_kh6rn"]
+[ext_resource type="Script" path="res://Levels/Level1CanvasLayer.gd" id="4_ml8m6"]
+[ext_resource type="Script" path="res://Levels/SpawnControl.gd" id="5_vvbli"]
+[ext_resource type="PackedScene" uid="uid://dqu43ugp68gvp" path="res://Shaders/blackHole.tscn" id="6_v36gd"]
+
+[node name="LevelTest" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_1to3p")
+
+[node name="SpaceBackground" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(408, 371)
+texture = ExtResource("2_04dnn")
+
+[node name="Player" parent="." instance=ExtResource("1_l0aft")]
+position = Vector2(400, 400)
+scale = Vector2(0.2, 0.2)
+
+[node name="PlayerRoid" parent="." instance=ExtResource("4_kh6rn")]
+position = Vector2(400, 400)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("4_ml8m6")
+
+[node name="SpawnControl" type="Node2D" parent="."]
+process_mode = 1
+script = ExtResource("5_vvbli")
+
+[node name="AtmosTimer" type="Timer" parent="."]
+process_mode = 1
+wait_time = 10.0
+autostart = true
+
+[node name="blackHole" parent="." instance=ExtResource("6_v36gd")]
+position = Vector2(-287, 1018)
+
+[connection signal="timeout" from="AtmosTimer" to="." method="_on_atmos_timer_timeout"]

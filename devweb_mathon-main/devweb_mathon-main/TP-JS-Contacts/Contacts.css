@@ -1,0 +1,44 @@
+/* Feuille de style pour le TP Contacts */
+
+body {
+   widh: 976px; margin: 5px auto;
+   font-family: Trebuchet MS, Verdana, sans-serif;
+}
+
+h1 { text-align: center; }
+.centre { text-align: center; }
+table { 
+    border-collapse: collapse;
+    margin: 5px auto;
+}
+
+th { color: white; background: #BBBBBB; border: thin solid black;}
+td { font-size: .92em; border: thin solid black; }
+th, td {
+    padding: 3px 5px;
+    vertical-align: middle;
+}
+
+/* Pour les formulaires */
+p.form { width: 700px; margin: 3px auto; }
+p.form input[type=image] { vertical-align: middle; }
+
+/* Pour les messages */
+p.message {
+    font-weight: bold;
+    text-align: center;
+    color: #29A329;
+    background-color: #81F0BC;
+    border: 1px solid #29A329;
+    padding: 3px 5px;
+}
+
+p.erreur {
+    color: red;
+    background-color: #FFA3A3;
+    border: 1px solid red;
+    padding: 3px 5px;
+}
+
+/* Pour les auteurs */
+p.binome { text-align: right; font-size: 0.8em; font-style: italic; padding-right: 10px; } 

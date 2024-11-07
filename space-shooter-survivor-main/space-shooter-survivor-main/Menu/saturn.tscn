@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://prvxdj5ltrop"]
+
+[ext_resource type="Texture2D" uid="uid://dvplh62j8bwph" path="res://Textures/8k_saturn.jpg" id="1_yuh42"]
+[ext_resource type="Texture2D" uid="uid://c5ph54k006fv7" path="res://Textures/saturn_ring_c1rcle.png" id="2_gvupr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_oo33b"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_sls5s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ceeou"]
+albedo_texture = ExtResource("1_yuh42")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vbm4a"]
+albedo_texture = ExtResource("2_gvupr")
+uv1_scale = Vector3(0.33, 0.33, 0.33)
+uv1_offset = Vector3(0.498, 0, -0.5)
+uv1_triplanar = true
+
+[node name="Saturn" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_oo33b")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(0.99776, 0, 0, 0, 0.99776, 0, 0, 0, 0.99776, 0, 0, 0)
+mesh = SubResource("SphereMesh_sls5s")
+material = SubResource("StandardMaterial3D_ceeou")
+
+[node name="RING" type="CSGCombiner3D" parent="."]
+
+[node name="ring" type="CSGCylinder3D" parent="RING"]
+transform = Transform3D(1, 0, 0, 0, 0.952667, -0.304016, 0, 0.304016, 0.952667, 0, 0, 0)
+radius = 1.5
+height = 0.001
+sides = 64
+material = SubResource("StandardMaterial3D_vbm4a")
+
+[node name="Trou" type="CSGCylinder3D" parent="RING"]
+transform = Transform3D(1, 0, 0, 0, 0.952661, -0.304033, 0, 0.304033, 0.952661, 0, 0, 0)
+operation = 2
+radius = 0.65
+height = 1.0
+sides = 64

@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxqjnvpgwjgjx"]
+
+[ext_resource type="Texture2D" uid="uid://bsc3r7x73x7jl" path="res://Ressources/Textures/2k_mars.jpg" id="1_n6wvr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1x27n"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_yvhbi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1alqv"]
+albedo_texture = ExtResource("1_n6wvr")
+
+[node name="Mars" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_1x27n")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+mesh = SubResource("SphereMesh_yvhbi")
+material = SubResource("StandardMaterial3D_1alqv")

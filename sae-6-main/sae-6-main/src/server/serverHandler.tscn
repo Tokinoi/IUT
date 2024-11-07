@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgtrjsjj6gcx"]
+
+[ext_resource type="Script" path="res://src/server/serverHandler.gd" id="1_r3l32"]
+
+[node name="ServerHandler" type="Node2D"]
+script = ExtResource("1_r3l32")

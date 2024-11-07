@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://ug5hfobqmx0x"]
+
+[ext_resource type="Texture2D" uid="uid://b8qcqelbr044s" path="res://Assets/Hologram Interface -Wenrexa/Card X3/Card X6.png" id="1_2pwav"]
+[ext_resource type="Script" path="res://Menu/pause_menu.gd" id="1_6u4gy"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2jrw7"]
+texture = ExtResource("1_2pwav")
+expand_margin_left = 10.0
+expand_margin_top = 23.0
+expand_margin_right = 10.0
+expand_margin_bottom = 9.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_jx301"]
+font_size = 26
+
+[sub_resource type="LabelSettings" id="LabelSettings_2w3r7"]
+font_size = 20
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6u4gy")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 540.0
+offset_bottom = 240.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_2jrw7")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.5
+offset_top = 10.0
+offset_right = 40.5
+offset_bottom = 49.0
+grow_horizontal = 2
+text = "Pause"
+label_settings = SubResource("LabelSettings_jx301")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="GridContainer" type="GridContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -182.0
+offset_right = -20.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 0
+columns = 3
+
+[node name="Kills" type="Label" parent="Panel/GridContainer"]
+layout_mode = 2
+text = "Ennemis Tués: "
+label_settings = SubResource("LabelSettings_2w3r7")

@@ -1,0 +1,436 @@
+[gd_scene load_steps=18 format=3 uid="uid://cn0utepiltdtj"]
+
+[ext_resource type="Script" path="res://Scripts/planet_menu.gd" id="1_kenj1"]
+[ext_resource type="FontFile" uid="uid://cplustyntg7dm" path="res://Assets/Fonts/fonts/xolonium/xolonium-fonts-4.1/ttf/Xolonium-Regular.ttf" id="2_dbshf"]
+[ext_resource type="FontFile" uid="uid://b3sooqo0xdhhl" path="res://Assets/Fonts/fonts/xolonium/xolonium-fonts-4.1/ttf/Xolonium-Bold.ttf" id="2_ms2eq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hjo6e"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eel7y"]
+bg_color = Color(0, 0, 0, 1)
+border_width_bottom = 5
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Theme" id="Theme_xid65"]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/fonts/font = ExtResource("2_ms2eq")
+Button/styles/hover = SubResource("StyleBoxFlat_hjo6e")
+Button/styles/normal = SubResource("StyleBoxFlat_eel7y")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tlr1q"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bw4va"]
+bg_color = Color(0, 0, 0, 1)
+border_width_bottom = 5
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Theme" id="Theme_36asq"]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/fonts/font = ExtResource("2_ms2eq")
+Button/styles/hover = SubResource("StyleBoxFlat_tlr1q")
+Button/styles/normal = SubResource("StyleBoxFlat_bw4va")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yf2dx"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lbsxa"]
+bg_color = Color(0, 0, 0, 1)
+border_width_bottom = 5
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+
+[sub_resource type="Theme" id="Theme_tyki5"]
+Button/fonts/font = ExtResource("2_ms2eq")
+Button/styles/hover = SubResource("StyleBoxFlat_yf2dx")
+Button/styles/normal = SubResource("StyleBoxFlat_lbsxa")
+
+[sub_resource type="Animation" id="Animation_wijnx"]
+length = 0.001
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7nn7n"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_3ulk8"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xbthx"]
+_data = {
+"RESET": SubResource("Animation_wijnx"),
+"fade_in": SubResource("Animation_7nn7n"),
+"fade_out": SubResource("Animation_3ulk8")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_np4ht"]
+font = ExtResource("2_dbshf")
+font_size = 36
+
+[node name="planet_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kenj1")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -295.0
+offset_top = 25.0
+offset_right = -148.0
+offset_bottom = 25.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(2, 2)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Mercury" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_xid65")
+text = "MERCURY"
+
+[node name="Venus" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_xid65")
+text = "VENUS"
+
+[node name="Earth" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_xid65")
+text = "EARTH"
+
+[node name="Mars" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_xid65")
+text = "MARS"
+
+[node name="Jupiter" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_xid65")
+text = "JUPITER"
+
+[node name="Saturn" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_xid65")
+text = "SATURN"
+
+[node name="Uranus" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_xid65")
+text = "URANUS"
+
+[node name="Neptune" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_xid65")
+text = "NEPTUNE"
+
+[node name="Solar" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_36asq")
+text = "SOLAR SYSTEM"
+
+[node name="MarginContainer3" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.0
+offset_top = -30.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer3"]
+layout_mode = 2
+
+[node name="Start" type="Button" parent="MarginContainer3/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = SubResource("Theme_xid65")
+text = "START GAME"
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -126.0
+offset_top = -73.0
+offset_right = 15.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2, 2)
+
+[node name="Return" type="Button" parent="MarginContainer2"]
+layout_mode = 2
+theme = SubResource("Theme_tyki5")
+text = "RETURN TO MENU"
+
+[node name="Transition" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xbthx")
+}
+
+[node name="ColorRect" type="ColorRect" parent="Transition"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="LabelMe" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 55.0
+offset_top = 29.0
+offset_right = 512.0
+offset_bottom = 535.0
+text = "The smallest planet in our
+solar system and nearest 
+to the Sun, Mercury is only
+slightly larger than Earth's
+Moon. From the surface
+of Mercury, the Sun would
+appear more than three
+times as large as it does
+when viewed from Earth"
+label_settings = SubResource("LabelSettings_np4ht")
+
+[node name="LabelVe" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 55.0
+offset_top = 29.0
+offset_right = 512.0
+offset_bottom = 535.0
+text = "Venus is the second 
+planet from the Sun, 
+and our closest planetary
+neighbor. It's the hottest
+planet in our solar system, 
+and is sometimes called
+Earth's twin."
+label_settings = SubResource("LabelSettings_np4ht")
+
+[node name="LabelEa" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 55.0
+offset_top = 29.0
+offset_right = 512.0
+offset_bottom = 535.0
+text = "The Earth, our home 
+planet and is the third
+planet from the Sun, and
+the fifth largest planet.
+It's the only place we
+know of inhabited by
+living things."
+label_settings = SubResource("LabelSettings_np4ht")
+
+[node name="LabelMa" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 55.0
+offset_top = 29.0
+offset_right = 512.0
+offset_bottom = 535.0
+text = "Mars is the fourth planet
+from the Sun. This planet
+is a dusty, cold, desert 
+world with a very thin
+atmosphere. This dynamic
+planet has seasons, polar
+ice caps, extinct volcanoes,
+canyons and weather."
+label_settings = SubResource("LabelSettings_np4ht")
+
+[node name="LabelJu" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 55.0
+offset_top = 29.0
+offset_right = 512.0
+offset_bottom = 535.0
+text = "Jupiter is a world of 
+extremes. It's the largest
+planet in our solar system
+– if it were a hollow shell,
+1,000 Earths could fit 
+inside. It's also the oldest
+planet, forming from the 
+dust and gases left over 
+from the Sun's formation
+4.5 billion years ago."
+label_settings = SubResource("LabelSettings_np4ht")
+
+[node name="LabelSa" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 55.0
+offset_top = 29.0
+offset_right = 512.0
+offset_bottom = 535.0
+text = "Saturn is the sixth planet 
+from the Sun, and the
+second-largest planet
+in our solar system. The 
+planet is named for the
+Roman god of agriculture
+and wealth, who was also
+the father of Jupiter"
+label_settings = SubResource("LabelSettings_np4ht")
+
+[node name="LabelUr" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 55.0
+offset_top = 29.0
+offset_right = 512.0
+offset_bottom = 535.0
+text = "Uranus is the seventh
+planet from the Sun, and
+it has the third largest
+diameter of planets in
+our solar system. Uranus
+appears to spin sideways."
+label_settings = SubResource("LabelSettings_np4ht")
+
+[node name="LabelNe" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 55.0
+offset_top = 29.0
+offset_right = 512.0
+offset_bottom = 535.0
+text = "Neptune is the eighth
+and most distant planet
+in our solar system. 
+Neptune was the first
+planet located through
+mathematical calculations.
+Using predictions made by
+Urbain Le Verrier, 
+Johann Galle discovered 
+the planet in 1846."
+label_settings = SubResource("LabelSettings_np4ht")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Mercury" to="." method="_on_mercury_pressed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Mercury" to="." method="_on_mercury_toggled"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Venus" to="." method="_on_venus_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Earth" to="." method="_on_earth_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Mars" to="." method="_on_mars_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Jupiter" to="." method="_on_jupiter_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Saturn" to="." method="_on_saturn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Uranus" to="." method="_on_uranus_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Neptune" to="." method="_on_neptune_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Solar" to="." method="_on_solar_pressed"]
+[connection signal="pressed" from="MarginContainer3/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MarginContainer2/Return" to="." method="_on_return_pressed"]

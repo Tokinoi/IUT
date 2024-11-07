@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://di03bn4s2q7ge"]
+
+[ext_resource type="Texture2D" uid="uid://bahop2lmc8q7c" path="res://Ressources/Textures/2k_uranus.jpg" id="1_anwxo"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_s0alb"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_p0a2a"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xr6e5"]
+albedo_texture = ExtResource("1_anwxo")
+
+[node name="Uranus" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_s0alb")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+mesh = SubResource("SphereMesh_p0a2a")
+material = SubResource("StandardMaterial3D_xr6e5")

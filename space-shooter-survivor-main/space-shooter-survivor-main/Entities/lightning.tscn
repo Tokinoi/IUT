@@ -1,0 +1,100 @@
+[gd_scene load_steps=15 format=3 uid="uid://dkdfevwo17ngt"]
+
+[ext_resource type="Script" path="res://Entities/lightning.gd" id="1_v0x5e"]
+[ext_resource type="Texture2D" uid="uid://x115f1kqviy4" path="res://Assets/Foozle_2DS0011_Void_MainShip/Main ship weapons/PNGs/Main ship weapon - Projectile - Big Space Gun.png" id="2_hhd1n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3v54s"]
+atlas = ExtResource("2_hhd1n")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kksf6"]
+atlas = ExtResource("2_hhd1n")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgey7"]
+atlas = ExtResource("2_hhd1n")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28kai"]
+atlas = ExtResource("2_hhd1n")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5j3y"]
+atlas = ExtResource("2_hhd1n")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qvmx"]
+atlas = ExtResource("2_hhd1n")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gyh3j"]
+atlas = ExtResource("2_hhd1n")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4dop"]
+atlas = ExtResource("2_hhd1n")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gw6nk"]
+atlas = ExtResource("2_hhd1n")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trwkn"]
+atlas = ExtResource("2_hhd1n")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t3yvp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3v54s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kksf6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgey7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_28kai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5j3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qvmx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gyh3j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4dop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gw6nk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trwkn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0f46h"]
+radius = 9.0
+height = 18.0
+
+[node name="mine" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_v0x5e")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_t3yvp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_0f46h")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -1,0 +1,4 @@
+*.o
+db1
+list.test
+skiplist.test

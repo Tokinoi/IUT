@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyqwmivqx6ekv"]
+
+[ext_resource type="Script" path="res://src/game/entity/rock.gd" id="1_e3gib"]
+[ext_resource type="Texture2D" uid="uid://15g4mjn03e3d" path="res://assets/Obstacles/rocks 1.2 spreadsheet test.png" id="1_ual8c"]
+
+[node name="Rock" type="StaticBody2D" groups=["rock"]]
+script = ExtResource("1_e3gib")
+
+[node name="Rocks1_2SpreadsheetTest" type="Sprite2D" parent="."]
+position = Vector2(3.00006, -8.99994)
+rotation = -3.14159
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_ual8c")
+hframes = 6
+vframes = 7
+frame = 31
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -29, 14, -17, 32, 19, -25, 20, -18, -19)

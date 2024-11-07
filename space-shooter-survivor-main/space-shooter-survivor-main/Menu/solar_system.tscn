@@ -1,0 +1,302 @@
+[gd_scene load_steps=24 format=3 uid="uid://bse4800y8sleh"]
+
+[ext_resource type="PackedScene" uid="uid://bdc005s5xqwvp" path="res://Menu/sun.tscn" id="1_1ny1f"]
+[ext_resource type="PackedScene" uid="uid://bcwg4aumdhpec" path="res://Menu/terra.tscn" id="2_vrw00"]
+[ext_resource type="Script" path="res://Scripts/Spacial.gd" id="3_xt1pp"]
+[ext_resource type="Texture2D" uid="uid://qvye22u0pj4u" path="res://Textures/2k_stars_milky_way.jpg" id="3_y8bre"]
+[ext_resource type="PackedScene" uid="uid://dxqjnvpgwjgjx" path="res://Menu/mars.tscn" id="4_0467j"]
+[ext_resource type="PackedScene" uid="uid://bryyrbfr3osv8" path="res://Menu/mercury.tscn" id="5_28i0w"]
+[ext_resource type="Script" path="res://Scripts/planets.gd" id="5_ia3nr"]
+[ext_resource type="PackedScene" uid="uid://bd7im5piir4ws" path="res://Menu/venus.tscn" id="6_jp6fe"]
+[ext_resource type="PackedScene" uid="uid://riqy0ag4ue6e" path="res://Menu/menu.tscn" id="7_ywic1"]
+[ext_resource type="PackedScene" uid="uid://dbvrsrmhamxqd" path="res://Menu/jupiter.tscn" id="10_uen3o"]
+[ext_resource type="PackedScene" uid="uid://prvxdj5ltrop" path="res://Menu/saturn.tscn" id="11_wakab"]
+[ext_resource type="PackedScene" uid="uid://di03bn4s2q7ge" path="res://Menu/uranus.tscn" id="12_x1qi8"]
+[ext_resource type="PackedScene" uid="uid://njd8t1nhe4ve" path="res://Menu/neptune.tscn" id="13_6gh0r"]
+[ext_resource type="PackedScene" uid="uid://cn0utepiltdtj" path="res://Menu/planet_menu.tscn" id="14_q6bye"]
+[ext_resource type="PackedScene" uid="uid://cd760lci7p27c" path="res://Menu/params_menu.tscn" id="15_o1vsw"]
+
+[sub_resource type="Animation" id="Animation_wijnx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7nn7n"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_3ulk8"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xbthx"]
+_data = {
+"RESET": SubResource("Animation_wijnx"),
+"fade_in": SubResource("Animation_7nn7n"),
+"fade_out": SubResource("Animation_3ulk8")
+}
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_hfrfg"]
+panorama = ExtResource("3_y8bre")
+
+[sub_resource type="Sky" id="Sky_ja4rg"]
+sky_material = SubResource("PanoramaSkyMaterial_hfrfg")
+
+[sub_resource type="Environment" id="Environment_6tjnl"]
+background_mode = 2
+sky = SubResource("Sky_ja4rg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_glv06"]
+
+[node name="Solar_System" type="Node3D"]
+
+[node name="Sun" parent="." instance=ExtResource("1_1ny1f")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.99989, 0.0148524, 0, -0.0148524, 0.99989, 0, 0, 20)
+current = true
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, -2.18557e-07, 5, 0, -5, -2.18557e-07, 0, 50, 0)
+
+[node name="Transition" type="AnimationPlayer" parent="."]
+movie_quit_on_finish = true
+libraries = {
+"": SubResource("AnimationLibrary_xbthx")
+}
+
+[node name="ColorRect" type="ColorRect" parent="Transition"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_energy = 16.0
+omni_range = 4096.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6tjnl")
+
+[node name="SpatialMe" type="Node3D" parent="."]
+script = ExtResource("3_xt1pp")
+rotation_speed = 1.0
+
+[node name="Mercury" parent="SpatialMe" instance=ExtResource("5_28i0w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10)
+script = ExtResource("5_ia3nr")
+
+[node name="CameraMe" type="Camera3D" parent="SpatialMe"]
+transform = Transform3D(-0.731354, 0, 0.681998, 0, 1, 0, -0.681998, 0, -0.731354, 12, 0, 8)
+
+[node name="LineMe" type="CSGTorus3D" parent="SpatialMe"]
+transform = Transform3D(1.02, 0, 0, 0, 1.02, 0, 0, 0, 1.02, 0, 0, 0)
+inner_radius = 14.0
+outer_radius = 13.9
+sides = 64
+ring_sides = 36
+material = SubResource("StandardMaterial3D_glv06")
+
+[node name="SpatialVe" type="Node3D" parent="."]
+script = ExtResource("3_xt1pp")
+rotation_speed = 0.8
+
+[node name="Venus" parent="SpatialVe" instance=ExtResource("6_jp6fe")]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 15, 0, -15)
+script = ExtResource("5_ia3nr")
+
+[node name="CameraVe" type="Camera3D" parent="SpatialVe"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 13.5, 0, -13.5)
+
+[node name="LineVe" type="CSGTorus3D" parent="SpatialVe"]
+transform = Transform3D(1.53, 0, 0, 0, 1.53, 0, 0, 0, 1.53, 0, 0, 0)
+inner_radius = 14.0
+outer_radius = 13.9
+sides = 64
+ring_sides = 36
+material = SubResource("StandardMaterial3D_glv06")
+
+[node name="SpatialEa" type="Node3D" parent="."]
+script = ExtResource("3_xt1pp")
+rotation_speed = 0.7
+
+[node name="Earth" parent="SpatialEa" instance=ExtResource("2_vrw00")]
+transform = Transform3D(3.7, 0, 0, 0, 3.7, 0, 0, 0, 3.7, -20, 0, -20)
+disable_mode = 2
+script = ExtResource("5_ia3nr")
+
+[node name="CameraEa" type="Camera3D" parent="SpatialEa"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -18)
+
+[node name="LineEa" type="CSGTorus3D" parent="SpatialEa"]
+transform = Transform3D(2.03, 0, 0, 0, 2.03, 0, 0, 0, 2.03, 0, 0, 0)
+inner_radius = 14.0
+outer_radius = 13.9
+sides = 64
+ring_sides = 36
+material = SubResource("StandardMaterial3D_glv06")
+
+[node name="SpatialMa" type="Node3D" parent="."]
+script = ExtResource("3_xt1pp")
+rotation_speed = 0.6
+
+[node name="Mars" parent="SpatialMa" instance=ExtResource("4_0467j")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -25, 0, 25)
+script = ExtResource("5_ia3nr")
+
+[node name="CameraMa" type="Camera3D" parent="SpatialMa"]
+transform = Transform3D(-0.920505, 0, 0.390731, 0, 1, 0, -0.390731, 0, -0.920505, -24.45, 0, 23.7)
+
+[node name="LineMa" type="CSGTorus3D" parent="SpatialMa"]
+transform = Transform3D(2.53, 0, 0, 0, 2.53, 0, 0, 0, 2.53, 0, 0, 0)
+inner_radius = 14.0
+outer_radius = 13.9
+sides = 64
+ring_sides = 36
+material = SubResource("StandardMaterial3D_glv06")
+
+[node name="SpatialJu" type="Node3D" parent="."]
+script = ExtResource("3_xt1pp")
+rotation_speed = 0.55
+
+[node name="Jupiter" parent="SpatialJu" instance=ExtResource("10_uen3o")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 30, 0, 30)
+script = ExtResource("5_ia3nr")
+
+[node name="CameraJu" type="Camera3D" parent="SpatialJu"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 31, 0, 31)
+
+[node name="LineJu" type="CSGTorus3D" parent="SpatialJu"]
+transform = Transform3D(3.03, 0, 0, 0, 3.03, 0, 0, 0, 3.03, 0, 0, 0)
+inner_radius = 14.0
+outer_radius = 13.9
+sides = 64
+ring_sides = 36
+material = SubResource("StandardMaterial3D_glv06")
+
+[node name="SpatialSa" type="Node3D" parent="."]
+script = ExtResource("3_xt1pp")
+
+[node name="Saturn" parent="SpatialSa" instance=ExtResource("11_wakab")]
+transform = Transform3D(5.5, 0, 0, 0, 5.5, 0, 0, 0, 5.5, 35, 0, -35)
+script = ExtResource("5_ia3nr")
+
+[node name="CameraSa" type="Camera3D" parent="SpatialSa"]
+transform = Transform3D(-0.998621, 0.00594022, -0.0521675, 0.00173971, 0.996777, 0.0801989, 0.0524757, 0.0799975, -0.995413, 34.988, 0, -36.3)
+
+[node name="LineSa" type="CSGTorus3D" parent="SpatialSa"]
+transform = Transform3D(3.53, 0, 0, 0, 3.53, 0, 0, 0, 3.53, 0, 0, 0)
+inner_radius = 14.0
+outer_radius = 13.9
+sides = 64
+ring_sides = 36
+material = SubResource("StandardMaterial3D_glv06")
+
+[node name="SpatialUr" type="Node3D" parent="."]
+script = ExtResource("3_xt1pp")
+rotation_speed = 0.4
+
+[node name="Uranus" parent="SpatialUr" instance=ExtResource("12_x1qi8")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -40, 0, 40)
+script = ExtResource("5_ia3nr")
+
+[node name="CameraUr" type="Camera3D" parent="SpatialUr"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -39, 0, 40)
+
+[node name="LineUr" type="CSGTorus3D" parent="SpatialUr"]
+transform = Transform3D(4.03, 0, 0, 0, 4.03, 0, 0, 0, 4.03, 0, 0, 0)
+inner_radius = 14.0
+outer_radius = 13.9
+sides = 64
+ring_sides = 36
+material = SubResource("StandardMaterial3D_glv06")
+
+[node name="SpatialNe" type="Node3D" parent="."]
+script = ExtResource("3_xt1pp")
+rotation_speed = 0.45
+
+[node name="Neptune" parent="SpatialNe" instance=ExtResource("13_6gh0r")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -45, 0, -45)
+script = ExtResource("5_ia3nr")
+
+[node name="CameraNe" type="Camera3D" parent="SpatialNe"]
+transform = Transform3D(0.707711, 0, 0.706502, 0, 1, 0, -0.706502, 0, 0.707711, -43.5, 0, -43.5)
+
+[node name="LineNe" type="CSGTorus3D" parent="SpatialNe"]
+transform = Transform3D(4.53, 0, 0, 0, 4.53, 0, 0, 0, 4.53, 0, 0, 0)
+inner_radius = 14.0
+outer_radius = 13.9
+sides = 64
+ring_sides = 36
+material = SubResource("StandardMaterial3D_glv06")
+
+[node name="mainMenu" parent="." instance=ExtResource("7_ywic1")]
+clip_contents = true
+
+[node name="planetMenu" parent="." instance=ExtResource("14_q6bye")]
+
+[node name="ParamsMenu" parent="." instance=ExtResource("15_o1vsw")]
+visible = false

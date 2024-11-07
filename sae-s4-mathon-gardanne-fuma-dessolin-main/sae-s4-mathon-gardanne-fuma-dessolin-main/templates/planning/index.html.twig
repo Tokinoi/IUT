@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Equipe index{% endblock %}
+
+{% block body %}
+    <div class="d-flex flex-justify-content-center">
+        <h1 class="display-1 border border-dark rounded mx-auto mt-2 p-2">Planning</h1>
+    </div>
+    
+    <div class="d-flex justify-content-center">
+    {% for day, rencontres in days %}
+        <div class="mx-auto">
+            <h2>{{ day }}</h2>
+            <div>
+            {% for rencontre in rencontres %}
+                <p>{{ rencontre.hote }}</p>
+                <p>{{ rencontre.equipe_adverse }}</p>
+                <p>{{ rencontre.date_heure }}</p>
+                <p>{{ rencontre.gymnase }}</p>
+            {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    
+    
+    
+{% endblock %}

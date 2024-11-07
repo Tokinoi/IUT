@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbmlubfnxpi62"]
+
+[ext_resource type="Script" path="res://GUI/boostBar.gd" id="1_nou47"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sqic1"]
+bg_color = Color(0.94902, 0.419608, 0.0156863, 1)
+
+[node name="BoostControl" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nou47")
+
+[node name="Label" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 420.0
+offset_top = 1048.0
+offset_right = 479.0
+offset_bottom = 1082.0
+text = "BOOST"
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 475.0
+offset_top = 1048.0
+offset_right = 733.0
+offset_bottom = 1073.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_sqic1")
+show_percentage = false

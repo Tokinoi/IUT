@@ -1,0 +1,33 @@
+[gd_scene load_steps=9 format=3 uid="uid://b8pdnrscdx5i0"]
+
+[ext_resource type="PackedScene" uid="uid://cg1y6o3d4xlb7" path="res://assets/explosion_as_solid/scene.gltf" id="1_w3gqu"]
+[ext_resource type="Shader" path="res://src/shaders/explosion.gdshader" id="2_d4kcp"]
+[ext_resource type="Texture2D" uid="uid://baan2x1nq5hla" path="res://assets/explosion_as_solid/textures/Material__26_baseColor.jpeg" id="3_xw4j1"]
+[ext_resource type="Texture2D" uid="uid://ccop7ai5xgflf" path="res://assets/Bullets/PNG/Effects/Explosion_H.png" id="4_nrbs1"]
+[ext_resource type="Texture2D" uid="uid://c6j5fphuvxfvi" path="res://assets/Bullets/PNG/Effects/Explosion_A.png" id="5_4jb72"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n12id"]
+render_priority = 0
+shader = ExtResource("2_d4kcp")
+shader_parameter/explosionTexture = ExtResource("3_xw4j1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eldmv"]
+render_priority = 0
+shader = ExtResource("2_d4kcp")
+shader_parameter/explosionTexture = ExtResource("4_nrbs1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xw3lt"]
+render_priority = 0
+shader = ExtResource("2_d4kcp")
+shader_parameter/explosionTexture = ExtResource("5_4jb72")
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_w3gqu")]
+
+[node name="Object_2" parent="Sketchfab_model/explosion_obj_cleaner_materialmerger_gles" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_n12id")
+
+[node name="Object_3" parent="Sketchfab_model/explosion_obj_cleaner_materialmerger_gles" index="1"]
+surface_material_override/0 = SubResource("ShaderMaterial_eldmv")
+
+[node name="Object_4" parent="Sketchfab_model/explosion_obj_cleaner_materialmerger_gles" index="2"]
+surface_material_override/0 = SubResource("ShaderMaterial_xw3lt")

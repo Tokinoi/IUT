@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bo3t153xrfhe7"]
+
+[ext_resource type="Texture2D" uid="uid://bwso3pvf6a827" path="res://Assets/Polygons/white-circle-removebg-preview.png" id="1_lngec"]
+[ext_resource type="Script" path="res://GUI/whiteCircleOfDeath.gd" id="2_urcyh"]
+
+[node name="WhiteCircle" type="Sprite2D"]
+modulate = Color(0, 0, 0, 1)
+z_index = 3001
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_lngec")
+script = ExtResource("2_urcyh")

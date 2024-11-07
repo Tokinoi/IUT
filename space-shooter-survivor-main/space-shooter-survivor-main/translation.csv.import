@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://ddqo85l6oj2t4"
+
+[deps]
+
+files=["res://translation.en.translation", "res://translation.fr.translation"]
+
+source_file="res://translation.csv"
+dest_files=["res://translation.en.translation", "res://translation.fr.translation"]
+
+[params]
+
+compress=true
+delimiter=0

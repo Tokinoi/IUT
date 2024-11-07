@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier l'équipe{% endblock %}
+
+{% block body %}
+    <div class="d-flex flex-justify-content-center">
+        <h1 class="display-1 border border-dark rounded mx-auto mt-2 p-2">Modifier l'équipe</h1>
+    </div>
+
+    {{ include('equipe/_form.html.twig', {'button_label': 'Update'}) }}
+
+{% endblock %}

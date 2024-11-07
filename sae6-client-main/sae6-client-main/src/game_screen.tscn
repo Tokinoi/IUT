@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyu85tfqfc3tl"]
+
+[ext_resource type="Script" path="res://src/game_screen.gd" id="1_cwh2i"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="2_kll8u"]
+
+[node name="GameScreen" type="Node2D"]
+script = ExtResource("1_cwh2i")
+
+[node name="MoveJoystick" parent="." instance=ExtResource("2_kll8u")]
+offset_left = 2.0
+offset_top = 343.0
+offset_right = 302.0
+offset_bottom = 643.0
+clampzone_size = 100.0
+
+[node name="ShootJoystick" parent="." instance=ExtResource("2_kll8u")]
+offset_left = 849.0
+offset_top = 348.0
+offset_right = 1149.0
+offset_bottom = 648.0
+pressed_color = Color(1, 0.549538, 0.543737, 1)
+use_input_actions = false

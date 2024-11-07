@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://njd8t1nhe4ve"]
+
+[ext_resource type="Texture2D" uid="uid://cqr7qjo2o4p61" path="res://Ressources/Textures/2k_neptune.jpg" id="1_duups"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_l23hw"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_a0hm7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u8h64"]
+albedo_texture = ExtResource("1_duups")
+
+[node name="Neptune" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_l23hw")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+mesh = SubResource("SphereMesh_a0hm7")
+material = SubResource("StandardMaterial3D_u8h64")

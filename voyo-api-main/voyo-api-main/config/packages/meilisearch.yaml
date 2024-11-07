@@ -1,0 +1,10 @@
+meilisearch:
+    url: '%env(MEILISEARCH_URL)%'
+    api_key: '%env(MEILISEARCH_API_KEY)%'
+    prefix: '%env(MEILISEARCH_PREFIX)%'
+    indices:
+        - name: User
+          class: App\Entity\User
+
+        - name: VisitRequest
+          class: App\Entity\VisitRequest

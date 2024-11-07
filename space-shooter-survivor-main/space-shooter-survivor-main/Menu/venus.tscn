@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bd7im5piir4ws"]
+
+[ext_resource type="Texture2D" uid="uid://df4mxi12a1rt1" path="res://Textures/2k_venus_atmosphere.jpg" id="1_sdj0d"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_c7g5g"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_2hbjy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pnonx"]
+albedo_texture = ExtResource("1_sdj0d")
+
+[node name="Venus" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_c7g5g")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+mesh = SubResource("SphereMesh_2hbjy")
+material = SubResource("StandardMaterial3D_pnonx")

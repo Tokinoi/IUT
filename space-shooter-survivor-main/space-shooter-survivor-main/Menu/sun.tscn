@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://bdc005s5xqwvp"]
+
+[ext_resource type="Script" path="res://Scripts/DirectionalLight3D.gd" id="1_cd2ec"]
+[ext_resource type="Texture2D" uid="uid://mshyrngt8jen" path="res://Ressources/Textures/2k_sun.jpg" id="2_cxy0d"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_bweib"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kdjbw"]
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("2_cxy0d")
+albedo_texture_force_srgb = true
+albedo_texture_msdf = true
+emission_enabled = true
+emission = Color(1, 0.709804, 0, 1)
+emission_energy_multiplier = 16.0
+emission_texture = ExtResource("2_cxy0d")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1338k"]
+
+[node name="Sun" type="StaticBody3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+shadow_bias = 0.0
+script = ExtResource("1_cd2ec")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+mesh = SubResource("SphereMesh_bweib")
+material = SubResource("StandardMaterial3D_kdjbw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_1338k")

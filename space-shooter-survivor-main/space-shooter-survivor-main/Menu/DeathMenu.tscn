@@ -1,0 +1,228 @@
+[gd_scene load_steps=15 format=3 uid="uid://2b7ovxvd3m57"]
+
+[ext_resource type="Script" path="res://Scripts/DeathMenu.gd" id="1_1f5ac"]
+[ext_resource type="Texture2D" uid="uid://ckglhydrs3sb3" path="res://Textures/DeathTitle.png" id="2_h4idq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vfhv2"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_3ilb5"]
+Panel/styles/panel = SubResource("StyleBoxFlat_vfhv2")
+
+[sub_resource type="Animation" id="Animation_wijnx"]
+length = 0.001
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Transition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7nn7n"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Transition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Transition/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_3ulk8"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Transition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Transition/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xbthx"]
+_data = {
+"RESET": SubResource("Animation_wijnx"),
+"fade_in": SubResource("Animation_7nn7n"),
+"fade_out": SubResource("Animation_3ulk8")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cm1r5"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f842k"]
+bg_color = Color(0, 0, 0, 1)
+border_width_bottom = 5
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Theme" id="Theme_i0s5r"]
+Button/styles/hover = SubResource("StyleBoxFlat_cm1r5")
+Button/styles/normal = SubResource("StyleBoxFlat_f842k")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_giw33"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ucmb3"]
+bg_color = Color(0, 0, 0, 1)
+border_width_bottom = 5
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Theme" id="Theme_7twjs"]
+Button/styles/hover = SubResource("StyleBoxFlat_giw33")
+Button/styles/normal = SubResource("StyleBoxFlat_ucmb3")
+
+[node name="deathMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("1_1f5ac")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -401.0
+offset_top = -199.0
+offset_right = 401.0
+offset_bottom = -59.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_3ilb5")
+
+[node name="DeathTitle" type="Sprite2D" parent="Panel"]
+position = Vector2(410, 71)
+texture = ExtResource("2_h4idq")
+
+[node name="Transition" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xbthx")
+}
+
+[node name="ColorRect" type="ColorRect" parent="Transition"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.994
+anchor_right = 0.5
+anchor_bottom = 0.994
+offset_left = -110.0
+offset_top = -46.4
+offset_right = 39.0
+offset_bottom = -15.4
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+theme = SubResource("Theme_i0s5r")
+text = "EXIT GAME"
+
+[node name="Return" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.994
+anchor_right = 0.5
+anchor_bottom = 0.994
+offset_left = -110.0
+offset_top = -101.4
+offset_right = 39.0
+offset_bottom = -70.4
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+theme = SubResource("Theme_7twjs")
+text = "RETURN MENU"
+
+[node name="Reload" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.994
+anchor_right = 0.5
+anchor_bottom = 0.994
+offset_left = -110.0
+offset_top = -156.4
+offset_right = 39.0
+offset_bottom = -125.4
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+theme = SubResource("Theme_7twjs")
+text = "RELOAD GAME"
+
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Return" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="Reload" to="." method="_on_reload_pressed"]

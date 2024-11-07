@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpiwl0bpxoqod"]
+
+[ext_resource type="Script" path="res://Spaceship.gd" id="1_6aibe"]
+[ext_resource type="Texture2D" uid="uid://ddcwd4ongurna" path="res://Assets/tp assets/perseus_1.png" id="2_wh1pp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8uc45"]
+radius = 13.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ycfhh"]
+radius = 38.2099
+
+[node name="Spaceship" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_6aibe")
+
+[node name="Skin" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_wh1pp")
+
+[node name="Head" type="CollisionShape2D" parent="."]
+position = Vector2(0, -41)
+shape = SubResource("CircleShape2D_8uc45")
+
+[node name="Body" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_ycfhh")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

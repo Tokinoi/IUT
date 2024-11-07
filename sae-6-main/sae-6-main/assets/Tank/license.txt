@@ -1,0 +1,11 @@
+Model Information:
+* title:	T 34-85 D5T
+* source:	https://sketchfab.com/3d-models/t-34-85-d5t-2fcccb7b8fff4181ab9da310d577b3a9
+* author:	KEOMOPS (https://sketchfab.com/keomops)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "T 34-85 D5T" (https://sketchfab.com/3d-models/t-34-85-d5t-2fcccb7b8fff4181ab9da310d577b3a9) by KEOMOPS (https://sketchfab.com/keomops) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

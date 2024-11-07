@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bho5xcsricowm"]
+
+[ext_resource type="Texture2D" uid="uid://b2tkhyndwv101" path="res://Assets/Animated/Strip And GIF/Space Background.png" id="1_1ovap"]
+[ext_resource type="PackedScene" uid="uid://dpiwl0bpxoqod" path="res://Entities/spaceship.tscn" id="2_ckf1y"]
+
+[node name="Asteroid" type="Node2D"]
+
+[node name="SpaceBackground" type="Sprite2D" parent="."]
+position = Vector2(964, 968)
+texture = ExtResource("1_1ovap")
+
+[node name="Spaceship" parent="." instance=ExtResource("2_ckf1y")]
+position = Vector2(380, 311)

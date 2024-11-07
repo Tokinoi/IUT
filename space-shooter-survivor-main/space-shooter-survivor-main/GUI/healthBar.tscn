@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://ce6afuhblonk7"]
+
+[ext_resource type="Script" path="res://GUI/healthBar.gd" id="1_08y4x"]
+
+[sub_resource type="Theme" id="Theme_060ms"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iaipx"]
+bg_color = Color(0.6, 0.6, 0.6, 0.278431)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jnfhv"]
+bg_color = Color(1, 0, 0, 1)
+
+[node name="HealthBar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 205.0
+offset_bottom = 24.0
+script = ExtResource("1_08y4x")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 27.0
+offset_right = 61.0
+offset_bottom = 4.0
+scale = Vector2(6, 6)
+theme = SubResource("Theme_060ms")
+theme_override_styles/background = SubResource("StyleBoxFlat_iaipx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jnfhv")
+max_value = 10.0
+step = 1.0
+value = 10.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 26.0
+text = "HP"

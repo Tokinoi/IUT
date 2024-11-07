@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des équipes{% endblock %}
+
+{% block body %}
+    <div class="d-flex flex-justify-content-center">
+        <h1 class="display-1 border border-dark rounded mx-auto mt-2 p-2">Liste des équipes</h1>
+    </div>
+
+    {% if is_granted('ROLE_USER') %}
+        <a class="btn btn-outline-primary py-2 my-3" href="{{ path('app_equipe_new') }}">Créer une nouvelle équipe</a>
+    {% endif %}
+    
+    <div class="tablefixHead">
+    <table class="table table-striped">
+        <thead>
+            <tr class="table-primary">
+                <th>Ids</th>
+                <th>Libelles</th>
+                <th>Entraineurs</th>
+                <th>Créneaux</th>
+                <th>Liens photo</th>
+                <th>Liens calendrier</th>
+                <th>Commentaires</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for equipe in equipes %}
+            <tr class="my-auto">
+                <td class="align-middle">{{ equipe.id }}</td>
+                <td class="align-middle">{{ equipe.libelle }}</td>
+                <td class="align-middle">{{ equipe.entraineur }}</td>
+                <td class="align-middle">{{ equipe.creneaux }}</td>
+                <td class="align-middle">{{ equipe.urlPhoto }}</td>
+                <td class="align-middle">{{ equipe.urlResultCalendrier }}</td>
+                <td class="align-middle">{{ equipe.commentaire }}</td>
+                <td class="align-middle">
+                    <div class="d-flex flex-column flex-justify-content-center flex-align-item-space-around">
+                        <a class="btn btn-outline-primary" href="{{ path('app_equipe_show', {'id': equipe.id}) }}">Afficher</a>
+                        {% if is_granted('ROLE_USER') %}
+                            <a class="btn btn-outline-secondary" href="{{ path('app_equipe_edit', {'id': equipe.id}) }}">Modifier</a>
+                        {% endif %}
+                    </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">Pas de données trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+{% endblock %}

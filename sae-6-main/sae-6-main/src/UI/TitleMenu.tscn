@@ -1,0 +1,363 @@
+[gd_scene load_steps=39 format=3 uid="uid://etbsogedl3db"]
+
+[ext_resource type="PackedScene" uid="uid://ddmbg2w0r0gha" path="res://assets/Tank2/scene.gltf" id="1_elc4f"]
+[ext_resource type="FontFile" uid="uid://bs8d4fxqnev1b" path="res://assets/Fonts/ThaleahFat.ttf" id="1_mkcxp"]
+[ext_resource type="PackedScene" uid="uid://cg1y6o3d4xlb7" path="res://assets/explosion_as_solid/scene.gltf" id="2_omog0"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="3_d77ft"]
+[ext_resource type="PackedScene" uid="uid://ve7p8n1y51gp" path="res://assets/Tank/scene.gltf" id="3_oqi07"]
+[ext_resource type="PackedScene" uid="uid://b8pdnrscdx5i0" path="res://src/shaders/sketchfab_scene.tscn" id="3_ufcmf"]
+[ext_resource type="Resource" path="res://assets/Terrain/data.hterrain" id="4_cpfhq"]
+[ext_resource type="Script" path="res://src/UI/GameTitle.gd" id="4_j4rlv"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="5_rntkt"]
+[ext_resource type="Texture2D" uid="uid://d1kkog4i20634" path="res://src/UI/TitleMenu_slot0_albedo_bump.png" id="6_2s8vx"]
+[ext_resource type="Texture2D" uid="uid://dh1fm8rtv3ewa" path="res://assets/Terrain/coast_sand_rocks_02_4K-JPG/coast_sand_rocks_02/coast_sand_rocks_02_diff_4k.jpg" id="7_5nsdl"]
+[ext_resource type="Texture2D" uid="uid://b2nwitpfys2g" path="res://src/UI/TitleMenu_slot0_normal_roughness.png" id="7_uvmvk"]
+[ext_resource type="Texture2D" uid="uid://7kaeew5vauhl" path="res://src/UI/TitleMenu_slot1_normal_roughness.png" id="9_pgdn2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rfjie"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ssew0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g1p8m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jaem4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5l7ss"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ntq3t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xs8mm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tiad7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ijpus"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xy53j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sqxct"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wop7h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yqbda"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y2e2b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2rcf4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vqb45"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jo6tn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_57r8n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_asv5j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_netb0"]
+
+[sub_resource type="Resource" id="Resource_xd147"]
+script = ExtResource("5_rntkt")
+mode = 0
+textures = [[ExtResource("6_2s8vx"), ExtResource("7_5nsdl")], [ExtResource("7_uvmvk"), ExtResource("9_pgdn2")]]
+
+[sub_resource type="Shader" id="Shader_3an0d"]
+code = "
+// NOTE: Shader automatically converted from Godot Engine 4.2.stable's ProceduralSkyMaterial.
+
+shader_type sky;
+render_mode use_debanding;
+
+uniform vec4 sky_top_color : source_color = vec4(0.385, 0.454, 0.55, 1.0);
+uniform vec4 sky_horizon_color : source_color = vec4(0.646, 0.656, 0.67, 1.0);
+uniform float sky_curve : hint_range(0, 1) = 0.15;
+uniform float sky_energy = 1.0; // In Lux.
+uniform sampler2D sky_cover : filter_linear, source_color, hint_default_black;
+uniform vec4 sky_cover_modulate : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform vec4 ground_bottom_color : source_color = vec4(0.2, 0.169, 0.133, 1.0);
+uniform vec4 ground_horizon_color : source_color = vec4(0.646, 0.656, 0.67, 1.0);
+uniform float ground_curve : hint_range(0, 1) = 0.02;
+uniform float ground_energy = 1.0;
+uniform float sun_angle_max = 30.0;
+uniform float sun_curve : hint_range(0, 1) = 0.15;
+
+void sky() {
+	float v_angle = acos(clamp(EYEDIR.y, -1.0, 1.0));
+	float c = (1.0 - v_angle / (PI * 0.5));
+	vec3 sky = mix(sky_horizon_color.rgb, sky_top_color.rgb, clamp(1.0 - pow(1.0 - c, 1.0 / sky_curve), 0.0, 1.0));
+	sky *= sky_energy;
+
+	if (LIGHT0_ENABLED) {
+		float sun_angle = acos(dot(LIGHT0_DIRECTION, EYEDIR));
+		if (sun_angle < LIGHT0_SIZE) {
+			sky = LIGHT0_COLOR * LIGHT0_ENERGY;
+		} else if (sun_angle < sun_angle_max) {
+			float c2 = (sun_angle - LIGHT0_SIZE) / (sun_angle_max - LIGHT0_SIZE);
+			sky = mix(LIGHT0_COLOR * LIGHT0_ENERGY, sky, clamp(1.0 - pow(1.0 - c2, 1.0 / sun_curve), 0.0, 1.0));
+		}
+	}
+
+	if (LIGHT1_ENABLED) {
+		float sun_angle = acos(dot(LIGHT1_DIRECTION, EYEDIR));
+		if (sun_angle < LIGHT1_SIZE) {
+			sky = LIGHT1_COLOR * LIGHT1_ENERGY;
+		} else if (sun_angle < sun_angle_max) {
+			float c2 = (sun_angle - LIGHT1_SIZE) / (sun_angle_max - LIGHT1_SIZE);
+			sky = mix(LIGHT1_COLOR * LIGHT1_ENERGY, sky, clamp(1.0 - pow(1.0 - c2, 1.0 / sun_curve), 0.0, 1.0));
+		}
+	}
+
+	if (LIGHT2_ENABLED) {
+		float sun_angle = acos(dot(LIGHT2_DIRECTION, EYEDIR));
+		if (sun_angle < LIGHT2_SIZE) {
+			sky = LIGHT2_COLOR * LIGHT2_ENERGY;
+		} else if (sun_angle < sun_angle_max) {
+			float c2 = (sun_angle - LIGHT2_SIZE) / (sun_angle_max - LIGHT2_SIZE);
+			sky = mix(LIGHT2_COLOR * LIGHT2_ENERGY, sky, clamp(1.0 - pow(1.0 - c2, 1.0 / sun_curve), 0.0, 1.0));
+		}
+	}
+
+	if (LIGHT3_ENABLED) {
+		float sun_angle = acos(dot(LIGHT3_DIRECTION, EYEDIR));
+		if (sun_angle < LIGHT3_SIZE) {
+			sky = LIGHT3_COLOR * LIGHT3_ENERGY;
+		} else if (sun_angle < sun_angle_max) {
+			float c2 = (sun_angle - LIGHT3_SIZE) / (sun_angle_max - LIGHT3_SIZE);
+			sky = mix(LIGHT3_COLOR * LIGHT3_ENERGY, sky, clamp(1.0 - pow(1.0 - c2, 1.0 / sun_curve), 0.0, 1.0));
+		}
+	}
+
+	vec4 sky_cover_texture = texture(sky_cover, SKY_COORDS);
+	sky += (sky_cover_texture.rgb * sky_cover_modulate.rgb) * sky_cover_texture.a * sky_cover_modulate.a * sky_energy;
+
+	c = (v_angle - (PI * 0.5)) / (PI * 0.5);
+	vec3 ground = mix(ground_horizon_color.rgb, ground_bottom_color.rgb, clamp(1.0 - pow(1.0 - c, 1.0 / ground_curve), 0.0, 1.0));
+	ground *= ground_energy;
+
+	COLOR = mix(ground, sky, step(0.0, EYEDIR.y));
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qnh42"]
+shader = SubResource("Shader_3an0d")
+shader_parameter/sky_top_color = Color(0.466667, 0.694118, 0.882353, 1)
+shader_parameter/sky_horizon_color = Color(0.415686, 0.701961, 0.854902, 1)
+shader_parameter/sky_curve = 0.0
+shader_parameter/sky_energy = 1.0
+shader_parameter/sky_cover_modulate = Color(1, 1, 1, 1)
+shader_parameter/ground_bottom_color = Color(0.2, 0.169, 0.133, 1)
+shader_parameter/ground_horizon_color = Color(0.6463, 0.6558, 0.6708, 1)
+shader_parameter/ground_curve = 0.02
+shader_parameter/ground_energy = 1.0
+shader_parameter/sun_angle_max = 0.523599
+shader_parameter/sun_curve = 0.15
+
+[sub_resource type="Sky" id="Sky_wegoq"]
+sky_material = SubResource("ShaderMaterial_qnh42")
+
+[sub_resource type="Environment" id="Environment_cb7u0"]
+background_mode = 2
+sky = SubResource("Sky_wegoq")
+
+[node name="TitleMenu" type="CanvasLayer"]
+
+[node name="Background" type="Node3D" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="Background/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Background/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 250, 1000)
+
+[node name="Tank" parent="Background" instance=ExtResource("1_elc4f")]
+transform = Transform3D(-0.305446, -0.0859205, 0.948325, 1.10454e-08, 0.995921, 0.0902328, -0.95221, 0.0275613, -0.3042, 505.429, 87.7997, -345.64)
+
+[node name="Tank2" parent="Background" instance=ExtResource("1_elc4f")]
+transform = Transform3D(-0.305446, -0.0859205, 0.948325, 1.10454e-08, 0.995921, 0.0902328, -0.95221, 0.0275613, -0.3042, 714.937, 87.7997, 58.369)
+
+[node name="Tank3" parent="Background" instance=ExtResource("1_elc4f")]
+transform = Transform3D(-0.305446, -0.0859205, 0.948325, 1.10454e-08, 0.995921, 0.0902328, -0.95221, 0.0275613, -0.3042, 996.404, 87.7997, 440.674)
+
+[node name="Explosion" parent="Background" instance=ExtResource("2_omog0")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 615.78, 287.667, -1620.29)
+
+[node name="Explosion3" parent="Background" instance=ExtResource("2_omog0")]
+transform = Transform3D(4.41076, 0, 99.9027, 0, 100, 0, -99.9027, 0, 4.41076, 2038.14, 82.6077, -1168.68)
+
+[node name="Explosion2" parent="Background" instance=ExtResource("2_omog0")]
+transform = Transform3D(76.8473, 0, 63.9882, 0, 100, 0, -63.9882, 0, 76.8473, -2282.72, -79.1042, -1620.29)
+
+[node name="Sketchfab_Scene2" parent="Background" instance=ExtResource("3_ufcmf")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, -378.468, 102.928, -1289.69)
+
+[node name="Sketchfab_Scene3" parent="Background" instance=ExtResource("3_ufcmf")]
+transform = Transform3D(-59.4107, 0, -80.4386, 0, 100, 0, 80.4386, 0, -59.4107, -1754.36, 214.84, -2216.71)
+
+[node name="Sketchfab_Scene" parent="Background" instance=ExtResource("3_oqi07")]
+transform = Transform3D(47.1961, -29.0684, 117.591, 11.0877, 126.708, 26.8721, -120.621, 0.273485, 48.4801, -371.758, -105.672, -428.321)
+
+[node name="Sketchfab_Scene4" parent="Background" instance=ExtResource("3_oqi07")]
+transform = Transform3D(68.3565, -23.9202, 107.96, 8.55302, 127.685, 22.8754, -110.246, -4.92542, 68.7132, -836.432, -117.137, -181.469)
+
+[node name="Sketchfab_Scene5" parent="Background" instance=ExtResource("3_oqi07")]
+transform = Transform3D(68.3565, -23.9202, 107.96, 8.55302, 127.685, 22.8754, -110.246, -4.92542, 68.7132, -1236.19, -82.5008, 101.478)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_j4rlv")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("1_mkcxp")
+theme_override_font_sizes/font_size = 72
+text = "Tanktastic"
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="Standard" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("1_mkcxp")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rfjie")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ssew0")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_g1p8m")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_jaem4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5l7ss")
+text = "Standard"
+
+[node name="BattleRoyale" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("1_mkcxp")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ntq3t")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_xs8mm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_tiad7")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ijpus")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xy53j")
+text = "Battle royale
+"
+
+[node name="SettingsBtn" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("1_mkcxp")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_sqxct")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_wop7h")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_yqbda")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_y2e2b")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2rcf4")
+text = "Settings"
+
+[node name="QuitBtn" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("1_mkcxp")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vqb45")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_jo6tn")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_57r8n")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_asv5j")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_netb0")
+text = "Quit Game
+"
+
+[node name="HTerrain" type="Node3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+script = ExtResource("3_d77ft")
+map_scale = Vector3(30, 1, 30)
+centered = true
+_terrain_data = ExtResource("4_cpfhq")
+chunk_size = 32
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Classic4"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource("Resource_xd147")
+render_layers = 1
+cast_shadow = 1
+shader_params/u_ground_uv_scale_per_texture = null
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = null
+shader_params/u_tile_reduction = null
+shader_params/u_globalmap_blend_start = null
+shader_params/u_globalmap_blend_distance = null
+shader_params/u_colormap_opacity_per_texture = null
+
+[node name="HTerrain2" type="Node3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+script = ExtResource("3_d77ft")
+map_scale = Vector3(30, 1, 30)
+centered = true
+_terrain_data = ExtResource("4_cpfhq")
+chunk_size = 32
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Classic4"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource("Resource_xd147")
+render_layers = 1
+cast_shadow = 1
+shader_params/u_ground_uv_scale_per_texture = null
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = null
+shader_params/u_tile_reduction = null
+shader_params/u_globalmap_blend_start = null
+shader_params/u_globalmap_blend_distance = null
+shader_params/u_colormap_opacity_per_texture = null
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+light_energy = 0.5
+light_angular_distance = 75.0
+sky_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_cb7u0")
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("3_ufcmf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -468.644, 196.707, -1196.88)
+
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/Standard" to="Control" method="_on_start_btn_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BattleRoyale" to="Control" method="_on_battle_royale_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/SettingsBtn" to="Control" method="_on_settings_btn_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/QuitBtn" to="Control" method="_on_quit_btn_pressed"]

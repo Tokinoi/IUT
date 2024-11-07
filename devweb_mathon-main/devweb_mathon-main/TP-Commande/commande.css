@@ -1,0 +1,24 @@
+body { font-family: Verdana, Comic sans MS, sans-serif; }
+
+h1 { color: white; background-color: #E25756; text-align: center; }
+h2 { color: #EC4C4E; font-style: italic; text-align: center; }
+
+th, td {
+   font-size: .92em;
+   border: thin solid #E43134;
+   padding: 3px 5px;
+}
+th { color: white; background-color: #EC4C4E; }
+
+table {
+   border-collapse: collapse;
+   margin: 5px auto;
+}
+td { text-align: right; } 
+tbody  td:first-child { text-align: left; }
+tr.total  th:first-child { text-align: right; border: none; color: #EC4C4E; background-color: white; }
+.centre { text-align: center; }
+
+table.formulaire td, table.formulaire td { border: none; text-align: center; font-weight: bold; padding: 5px 10px; }
+fieldset { width: 600px; margin: 5px auto;
+           border: thin solid #E43134; }

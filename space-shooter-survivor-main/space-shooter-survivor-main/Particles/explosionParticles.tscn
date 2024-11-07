@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Texture2D" uid="uid://botvn8i12p6jx" path="res://Assets/tp assets/sysGun.png" id="1_fbvtb"]
+[ext_resource type="Script" path="res://Particles/explosionParticles.gd" id="2_5qs1b"]
+
+[sub_resource type="Gradient" id="Gradient_g1xgy"]
+offsets = PackedFloat32Array(0, 0.717172, 1)
+colors = PackedColorArray(0.966052, 0.966052, 5.39064e-06, 1, 1, 1, 0, 1, 1, 1, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4yktb"]
+gradient = SubResource("Gradient_g1xgy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2st4r"]
+lifetime_randomness = 0.2
+emission_shape = 3
+emission_box_extents = Vector3(50, 50, 1)
+particle_flag_disable_z = true
+direction = Vector3(100, 0, 0)
+spread = 25.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 400.0
+initial_velocity_max = 400.0
+angular_velocity_min = -300.0
+angular_velocity_max = 300.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -491.5
+angle_max = 500.0
+scale_min = 0.2
+scale_max = 0.5
+color = Color(1, 1, 0.282353, 1)
+color_ramp = SubResource("GradientTexture1D_4yktb")
+hue_variation_max = 0.2
+turbulence_noise_scale = 0.0
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_2st4r")
+texture = ExtResource("1_fbvtb")
+explosiveness = 0.3
+trail_sections = 2
+trail_section_subdivisions = 1
+script = ExtResource("2_5qs1b")

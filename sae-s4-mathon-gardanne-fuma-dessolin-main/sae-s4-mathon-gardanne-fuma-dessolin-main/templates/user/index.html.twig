@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste Utilisateur{% endblock %}
+
+{% block body %}
+    <div class="d-flex flex-justify-content-center">
+        <h1 class="display-1 border border-dark rounded mx-auto mt-2 p-2">Liste des Utilisateurs</h1>
+    </div>
+
+    {% if is_granted('ROLE_ADMIN') %}
+    <div class="d-flex justify-content-between">
+        <a class="btn btn-outline-primary py-2 my-3" href="{{ path('app_user_new') }}">Ajouter un nouvel Utilisateur</a>
+        <a class="btn btn-outline-danger py-2 my-3" href="{{ path('app_logout') }}">Se déconnecter</a>
+    </div>
+    {% endif %}
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Identifiant</th>
+                <th>Rôles</th>
+                <th>Mot de passe</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td class="align-middle">{{ user.login }}</td>
+                <td class="align-middle">{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td class="align-middle">{{ user.password }}</td>
+                <td class="align-middle">
+                <div class="d-flex flex-column flex-justify-content-center flex-align-item-space-around">
+                    <a class="btn btn-outline-primary" href="{{ path('app_user_show', {'login': user.login}) }}">Afficher</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a class="btn btn-outline-secondary" href="{{ path('app_user_edit', {'login': user.login}) }}">Modifier</a>
+                    {% endif %}
+                </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Pas de données</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

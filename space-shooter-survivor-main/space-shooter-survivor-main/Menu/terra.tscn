@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcwg4aumdhpec"]
+
+[ext_resource type="Texture2D" uid="uid://cjqr88f786w7i" path="res://Ressources/Textures/2k_earth_daymap.jpg" id="1_loeta"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_0a64g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0s0df"]
+albedo_texture = ExtResource("1_loeta")
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_t2klv"]
+
+[node name="Terra" type="StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+mesh = SubResource("SphereMesh_0a64g")
+material = SubResource("StandardMaterial3D_0s0df")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_t2klv")

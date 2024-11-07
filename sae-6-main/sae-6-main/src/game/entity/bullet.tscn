@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtqff6mx7x36o"]
+
+[ext_resource type="Script" path="res://src/game/entity/bullet.gd" id="1_qss37"]
+[ext_resource type="Texture2D" uid="uid://c0pphdxrnmnf5" path="res://assets/Bullets/PNG/Effects/Light_Shell.png" id="2_itvoq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bihgq"]
+radius = 3.0
+height = 14.0
+
+[node name="Bullet" type="Area2D" groups=["bullet"]]
+script = ExtResource("1_qss37")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_bihgq")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="LightShell" type="Sprite2D" parent="."]
+modulate = Color(1, 0.2, 0, 1)
+position = Vector2(0, -1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_itvoq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

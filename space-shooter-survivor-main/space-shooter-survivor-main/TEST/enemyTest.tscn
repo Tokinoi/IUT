@@ -1,0 +1,147 @@
+[gd_scene load_steps=12 format=3 uid="uid://bj70x7gxi0c64"]
+
+[ext_resource type="Script" path="res://TEST/enemyTest.gd" id="1_q1iup"]
+[ext_resource type="Texture2D" uid="uid://cdq43m8gew7nd" path="res://Assets/Foozle_Void_EnemyFleet_1/Kla'ed/Destruction/PNGs/Kla'ed - Scout - Destruction.png" id="2_55b81"]
+[ext_resource type="Texture2D" uid="uid://wxdwmw6jjhuc" path="res://Assets/Foozle_Void_EnemyFleet_1/Kla'ed/Engine/PNGs/Kla'ed - Scout - Engine.png" id="3_ui2ll"]
+[ext_resource type="Texture2D" uid="uid://dobg42h8ft4ev" path="res://Assets/Foozle_Void_EnemyFleet_1/Kla'ed/Shield/PNGs/Kla'ed - Scout - Shield.png" id="4_v27ta"]
+[ext_resource type="AudioStream" uid="uid://c2iwfwatijs0h" path="res://Assets/Sound/blaster-enemy.wav" id="5_50bi7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k71vm"]
+radius = 9.0
+
+[sub_resource type="Animation" id="Animation_opbx7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Engine:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shield:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_85l3c"]
+resource_name = "Shield"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shield:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+}
+
+[sub_resource type="Animation" id="Animation_dsj0n"]
+resource_name = "engine_on"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Engine:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_58bsl"]
+resource_name = "explode"
+length = 0.45
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6mdqt"]
+_data = {
+"RESET": SubResource("Animation_opbx7"),
+"Shield": SubResource("Animation_85l3c"),
+"engine_on": SubResource("Animation_dsj0n"),
+"explode": SubResource("Animation_58bsl")
+}
+
+[node name="enemyTest" type="CharacterBody2D" groups=["enemies"]]
+process_mode = 1
+collision_layer = 2
+script = ExtResource("1_q1iup")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("CircleShape2D_k71vm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, 0)
+rotation = 1.5708
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_55b81")
+hframes = 10
+
+[node name="Engine" type="Sprite2D" parent="."]
+position = Vector2(1.25, 5.96046e-08)
+rotation = 1.5708
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("3_ui2ll")
+hframes = 10
+
+[node name="Shield" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2, 5.96047e-08)
+rotation = 1.5708
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_v27ta")
+hframes = 14
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6mdqt")
+}
+
+[node name="BlasterPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_50bi7")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

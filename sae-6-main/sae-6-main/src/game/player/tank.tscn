@@ -1,0 +1,100 @@
+[gd_scene load_steps=9 format=3 uid="uid://b1c2g6j7iv2ya"]
+
+[ext_resource type="Script" path="res://src/game/player/tank.gd" id="1_2dlyx"]
+[ext_resource type="Script" path="res://src/game/player/Thruster.gd" id="2_o4gdf"]
+[ext_resource type="PackedScene" uid="uid://bxro2m4ss31t1" path="res://src/game/component/gun_component.tscn" id="3_a33ea"]
+[ext_resource type="Texture2D" uid="uid://skn5124scpn1" path="res://assets/tankModels/Churchill/ww2_top_view_hull7.png" id="4_p0q6w"]
+[ext_resource type="Texture2D" uid="uid://dvr17m3egutjq" path="res://assets/tankModels/Churchill/ww2_top_view_turret7.png" id="5_34udm"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_q7046"]
+friction = 1000.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kepgt"]
+size = Vector2(4, 4)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_om3o8"]
+radius = 14.0
+height = 64.0
+
+[node name="Tank" type="RigidBody2D" groups=["tank"]]
+mass = 500.0
+physics_material_override = SubResource("PhysicsMaterial_q7046")
+gravity_scale = 0.0
+can_sleep = false
+angular_damp = 1.0
+script = ExtResource("1_2dlyx")
+
+[node name="ThrusterLeft" type="RigidBody2D" parent="."]
+position = Vector2(-13, 0)
+mass = 8.95
+gravity_scale = 0.0
+can_sleep = false
+script = ExtResource("2_o4gdf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ThrusterLeft"]
+shape = SubResource("RectangleShape2D_kepgt")
+
+[node name="PinJointLeft" type="PinJoint2D" parent="ThrusterLeft"]
+node_a = NodePath("../..")
+node_b = NodePath("..")
+
+[node name="PinJointLeft2" type="PinJoint2D" parent="ThrusterLeft"]
+position = Vector2(26, 0)
+node_a = NodePath("../..")
+node_b = NodePath("..")
+
+[node name="ThrusterRight" type="RigidBody2D" parent="."]
+position = Vector2(13, 0)
+mass = 8.95
+gravity_scale = 0.0
+can_sleep = false
+script = ExtResource("2_o4gdf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ThrusterRight"]
+shape = SubResource("RectangleShape2D_kepgt")
+
+[node name="PinJointRight" type="PinJoint2D" parent="ThrusterRight"]
+node_a = NodePath("../..")
+node_b = NodePath("..")
+
+[node name="PinJointRight2" type="PinJoint2D" parent="ThrusterRight"]
+position = Vector2(-26, 0)
+node_a = NodePath("../..")
+node_b = NodePath("..")
+
+[node name="GunComponent" parent="." node_paths=PackedStringArray("tankOwner") instance=ExtResource("3_a33ea")]
+tankOwner = NodePath("..")
+
+[node name="NameLabel" type="RichTextLabel" parent="."]
+offset_left = -30.0
+offset_top = -30.0
+offset_right = 120.0
+offset_bottom = -5.0
+scale = Vector2(0.4, 0.4)
+bbcode_enabled = true
+text = "[center]RandomBot"
+fit_content = true
+scroll_active = false
+
+[node name="MessageLabel" type="RichTextLabel" parent="."]
+offset_left = -20.0
+offset_top = 16.0
+offset_right = 60.0
+offset_bottom = 41.0
+scale = Vector2(0.5, 0.5)
+bbcode_enabled = true
+text = "[center]Bonjour"
+fit_content = true
+scroll_active = false
+
+[node name="Hull" type="Sprite2D" parent="."]
+position = Vector2(1, -6)
+texture = ExtResource("4_p0q6w")
+
+[node name="Turret" type="Sprite2D" parent="."]
+position = Vector2(1, -5)
+texture = ExtResource("5_34udm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -1)
+shape = SubResource("CapsuleShape2D_om3o8")

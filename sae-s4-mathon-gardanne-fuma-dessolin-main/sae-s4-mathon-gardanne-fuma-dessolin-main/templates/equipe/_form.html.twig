@@ -1,0 +1,32 @@
+{{ form_start(form) }}
+    <div class="form mx-3 my-auto">
+        <div class="form-group">
+            {{ form_label(form.libelle) }}
+            {{ form_widget(form.libelle, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.entraineur) }}
+            {{ form_widget(form.entraineur, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.creneaux) }}
+            {{ form_widget(form.creneaux, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.url_photo) }}
+            {{ form_widget(form.url_photo, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.url_result_calendrier) }}
+            {{ form_widget(form.url_result_calendrier, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.commentaire) }}
+            {{ form_widget(form.commentaire, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="d-flex flex-row-reverse px-2 justify-content-space-around py-2">
+            <button class="btn btn-success d-flex flex-row-reverse mx-2">{{ button_label|default('Save') }}</button>
+            <a class="btn btn-secondary" href="{{ path('app_equipe_index') }}">Retour à la liste</a>
+        </div>
+    </div>
+{{ form_end(form) }}

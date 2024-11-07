@@ -1,0 +1,72 @@
+[gd_scene load_steps=6 format=3 uid="uid://bcsocxvvkwue3"]
+
+[ext_resource type="Script" path="res://Entities/Missile.gd" id="1_0ap82"]
+[ext_resource type="Texture2D" uid="uid://b3gd8dxeboyrt" path="res://Assets/Foozle_2DS0011_Void_MainShip/Main ship weapons/PNGs/Main ship weapon - Projectile - Rocket.png" id="2_qblqd"]
+
+[sub_resource type="Animation" id="Animation_51oua"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_cyn6w"]
+resource_name = "default"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2k0ou"]
+_data = {
+"RESET": SubResource("Animation_51oua"),
+"default": SubResource("Animation_cyn6w")
+}
+
+[node name="Missile" type="Area2D"]
+process_mode = 1
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_0ap82")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("2_qblqd")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2k0ou")
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+rotation = 1.5708
+scale = Vector2(2, 2)
+polygon = PackedVector2Array(1, -4, 2, 6, -3, 6, -2, -4, -0.5, -6)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

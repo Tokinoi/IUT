@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://d4avtawy3slyg"]
+
+[ext_resource type="Script" path="res://GUI/expControlBar.gd" id="1_13wjg"]
+[ext_resource type="Texture2D" uid="uid://o6gjv2bx40e5" path="res://Assets/Hologram Interface -Wenrexa/Card X3/Card X5.png" id="1_yredt"]
+[ext_resource type="Script" path="res://GUI/expBar.gd" id="3_6hncw"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sfgxv"]
+texture = ExtResource("1_yredt")
+expand_margin_left = 5.0
+expand_margin_top = 1.0
+expand_margin_right = 5.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7xjid"]
+bg_color = Color(0, 0.580392, 0.443137, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+anti_aliasing = false
+
+[node name="ExpControl" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 455.0
+offset_bottom = 65.0
+script = ExtResource("1_13wjg")
+
+[node name="ExpPanel" type="Panel" parent="." groups=["expBar"]]
+clip_contents = true
+custom_minimum_size = Vector2(264, 24)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -132.0
+offset_top = -12.0
+offset_right = 132.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_sfgxv")
+
+[node name="expBar" type="ProgressBar" parent="ExpPanel"]
+layout_mode = 2
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 261.0
+offset_bottom = 22.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_7xjid")
+max_value = 20.0
+step = 1.0
+rounded = true
+show_percentage = false
+script = ExtResource("3_6hncw")
+
+[node name="LVLText" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -10.5
+offset_right = 90.0
+offset_bottom = 12.5
+grow_vertical = 2
+text = "LVL 1"
+scroll_active = false
+text_direction = 2

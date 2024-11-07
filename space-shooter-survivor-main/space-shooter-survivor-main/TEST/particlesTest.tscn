@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Texture2D" uid="uid://c46f3e3lttc5d" path="res://Assets/tp assets/laz_2.png" id="1_ocyhg"]
+
+[sub_resource type="Gradient" id="Gradient_v7yga"]
+offsets = PackedFloat32Array(0, 0.128834, 0.840491, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rcx8l"]
+gradient = SubResource("Gradient_v7yga")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_apg01"]
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_box_extents = Vector3(300, 100, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color_ramp = SubResource("GradientTexture1D_rcx8l")
+
+[node name="ParticlesTest" type="GPUParticles2D"]
+position = Vector2(557, 249)
+process_material = SubResource("ParticleProcessMaterial_apg01")
+texture = ExtResource("1_ocyhg")
+lifetime = 5.0
+randomness = 1.0

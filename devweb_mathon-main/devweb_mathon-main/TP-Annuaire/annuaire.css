@@ -1,0 +1,3 @@
+table tr:nth-child(odd) { background-color: #CCCCFF; }
+table tr:nth-child(1) { background-color:blue; }
+h1 { background-color:blue; }

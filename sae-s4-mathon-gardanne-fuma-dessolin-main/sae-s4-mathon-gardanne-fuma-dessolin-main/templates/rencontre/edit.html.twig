@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Rencontre{% endblock %}
+
+{% block body %}
+    <div class="d-flex flex-justify-content-center">
+        <h1 class="display-1 border border-dark rounded mx-auto mt-2 p-2">Modifier la Rencontre</h1>
+    </div>
+
+    {{ include('rencontre/_form.html.twig', {'button_label': 'Update'}) }}
+
+{% endblock %}

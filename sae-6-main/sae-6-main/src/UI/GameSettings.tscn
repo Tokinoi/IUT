@@ -1,0 +1,253 @@
+[gd_scene load_steps=20 format=3 uid="uid://ss4ru3q58m47"]
+
+[ext_resource type="Script" path="res://src/UI/SettingsGame.gd" id="1_3wsn8"]
+[ext_resource type="FontFile" uid="uid://bs8d4fxqnev1b" path="res://assets/Fonts/ThaleahFat.ttf" id="1_38xfw"]
+[ext_resource type="Script" path="res://src/UI/ObstacleProbBtn.gd" id="2_cqu8u"]
+[ext_resource type="Script" path="res://src/UI/ConnectionBtn.gd" id="3_3lraq"]
+[ext_resource type="Script" path="res://src/UI/ScoreBtn.gd" id="3_pi4w7"]
+[ext_resource type="Script" path="res://src/UI/RateFireBtn.gd" id="4_0fo7b"]
+[ext_resource type="Script" path="res://src/UI/ArenaWBtn.gd" id="6_gc5jb"]
+[ext_resource type="Script" path="res://src/UI/ArenaHBtn.gd" id="6_uycr5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hvfh0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cf0mr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s3row"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2o1x4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hprat"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2pvwm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ey6u7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wujtm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vesc1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p0sx6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5f4nm"]
+
+[node name="GameSettings" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_as_relative = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" parent="."]
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3wsn8")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_38xfw")
+theme_override_font_sizes/font_size = 66
+text = "SETTINGS"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="ConectionTimeout" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_38xfw")
+theme_override_font_sizes/font_size = 20
+text = "Connection timeout"
+
+[node name="ConnectionBtn" type="LineEdit" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hvfh0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cf0mr")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_s3row")
+placeholder_text = "10000"
+alignment = 1
+script = ExtResource("3_3lraq")
+
+[node name="RateOfFire" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_38xfw")
+theme_override_font_sizes/font_size = 20
+text = "Rate of fire (delay in ms)"
+
+[node name="RateFireBtn" type="LineEdit" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2o1x4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hprat")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_2pvwm")
+placeholder_text = "1000"
+alignment = 1
+script = ExtResource("4_0fo7b")
+
+[node name="Respawn" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_38xfw")
+theme_override_font_sizes/font_size = 20
+text = "Respawn (delay in ms)
+"
+
+[node name="RespawnTimeBtn" type="LineEdit" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2o1x4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hprat")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_2pvwm")
+placeholder_text = "1000"
+alignment = 1
+
+[node name="MessageDisplay" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_38xfw")
+theme_override_font_sizes/font_size = 20
+text = "Message displays time (delay in ms)"
+
+[node name="MessageTimeBtn" type="LineEdit" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2o1x4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hprat")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_2pvwm")
+placeholder_text = "1000"
+alignment = 1
+
+[node name="ScoreLimit" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_38xfw")
+theme_override_font_sizes/font_size = 20
+text = "Score limit
+"
+
+[node name="ScoreBtn" type="LineEdit" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2o1x4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hprat")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_2pvwm")
+placeholder_text = "Add a max score"
+alignment = 1
+script = ExtResource("3_pi4w7")
+
+[node name="ArenaHeight" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_38xfw")
+theme_override_font_sizes/font_size = 20
+text = "Arena Height
+"
+
+[node name="ArenaHBtn" type="LineEdit" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2o1x4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hprat")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_2pvwm")
+placeholder_text = "1000"
+alignment = 1
+script = ExtResource("6_uycr5")
+
+[node name="ArenaWidth" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_38xfw")
+theme_override_font_sizes/font_size = 20
+text = "Arena Width
+"
+
+[node name="ArenaWBtn" type="LineEdit" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2o1x4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hprat")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_2pvwm")
+placeholder_text = "1000"
+alignment = 1
+script = ExtResource("6_gc5jb")
+
+[node name="ObstacleProba" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_38xfw")
+theme_override_font_sizes/font_size = 20
+text = "Obstacle probability"
+
+[node name="ObstacleProbBtn" type="LineEdit" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2o1x4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hprat")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_2pvwm")
+placeholder_text = "Between 0.0 and 0.9"
+alignment = 1
+script = ExtResource("2_cqu8u")
+
+[node name="Language" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_38xfw")
+theme_override_font_sizes/font_size = 30
+text = "Language"
+horizontal_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+item_count = 2
+allow_reselect = true
+popup/item_0/text = "Français"
+popup/item_0/id = 0
+popup/item_1/text = "English"
+popup/item_1/id = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="QuitBtn" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_38xfw")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ey6u7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_wujtm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vesc1")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_p0sx6")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5f4nm")
+text = "EXIT TO MENU"
+
+[connection signal="text_submitted" from="Control/MarginContainer/VBoxContainer/ConnectionBtn" to="Control/MarginContainer/VBoxContainer/ConnectionBtn" method="_on_text_submitted"]
+[connection signal="text_submitted" from="Control/MarginContainer/VBoxContainer/RateFireBtn" to="Control/MarginContainer/VBoxContainer/RateFireBtn" method="_on_text_submitted"]
+[connection signal="text_submitted" from="Control/MarginContainer/VBoxContainer/ScoreBtn" to="Control/MarginContainer/VBoxContainer/ScoreBtn" method="_on_text_submitted"]
+[connection signal="text_submitted" from="Control/MarginContainer/VBoxContainer/ArenaHBtn" to="Control/MarginContainer/VBoxContainer/ArenaHBtn" method="_on_text_submitted"]
+[connection signal="text_submitted" from="Control/MarginContainer/VBoxContainer/ArenaWBtn" to="Control/MarginContainer/VBoxContainer/ArenaWBtn" method="_on_text_submitted"]
+[connection signal="text_submitted" from="Control/MarginContainer/VBoxContainer/ObstacleProbBtn" to="Control/MarginContainer/VBoxContainer/ObstacleProbBtn" method="_on_text_submitted"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/QuitBtn" to="Control" method="_on_quit_btn_pressed"]

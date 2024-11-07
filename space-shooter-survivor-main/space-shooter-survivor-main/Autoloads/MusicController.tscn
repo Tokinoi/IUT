@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://cd6v18ogpthm"]
+
+[ext_resource type="Script" path="res://Autoloads/MusicController.gd" id="1_lx5dj"]
+[ext_resource type="AudioStream" uid="uid://cna0iugeo1ofr" path="res://Assets/Sound/Music/alone-against-enemy.ogg" id="2_xgquc"]
+[ext_resource type="AudioStream" uid="uid://dhacl8uix3j2e" path="res://Assets/Sound/Music/epic-end.ogg" id="3_fqarx"]
+[ext_resource type="AudioStream" uid="uid://b5fa1ucxw7oxr" path="res://Assets/Sound/Music/rain-of-lasers.ogg" id="4_eru2f"]
+[ext_resource type="AudioStream" uid="uid://bnu03m585w5ge" path="res://Assets/Sound/Music/without-fear.ogg" id="5_d4o27"]
+
+[node name="MusicController" type="Node2D"]
+script = ExtResource("1_lx5dj")
+
+[node name="AloneAgainstEnemy" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_xgquc")
+max_distance = 500000.0
+
+[node name="EpicEnd" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_fqarx")
+max_distance = 500000.0
+
+[node name="RainOfLaser" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_eru2f")
+max_distance = 500000.0
+
+[node name="WithoutFear" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_d4o27")
+max_distance = 500000.0
+
+[connection signal="finished" from="AloneAgainstEnemy" to="." method="_on_alone_against_enemy_finished"]
+[connection signal="finished" from="EpicEnd" to="." method="_on_epic_end_finished"]
+[connection signal="finished" from="RainOfLaser" to="." method="_on_rain_of_laser_finished"]
+[connection signal="finished" from="WithoutFear" to="." method="_on_without_fear_finished"]

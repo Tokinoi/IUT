@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmxhtnwg7dp4b"]
+
+[ext_resource type="Texture2D" uid="uid://tbkqvg8rhvrn" path="res://Assets/tp assets/light.png" id="1_fus6c"]
+
+[sub_resource type="Gradient" id="Gradient_m3430"]
+offsets = PackedFloat32Array(0, 0.141414, 0.90604, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xetho"]
+gradient = SubResource("Gradient_m3430")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gwl1n"]
+lifetime_randomness = 0.1
+emission_shape = 3
+emission_box_extents = Vector3(3000, 3000, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.01
+scale_max = 0.02
+color_ramp = SubResource("GradientTexture1D_xetho")
+hue_variation_min = -0.01
+hue_variation_max = 0.02
+
+[node name="atmosphereParticles" type="GPUParticles2D"]
+scale = Vector2(0.5, 0.5)
+amount = 5000
+process_material = SubResource("ParticleProcessMaterial_gwl1n")
+texture = ExtResource("1_fus6c")
+lifetime = 10.0
+visibility_rect = Rect2(-3000, -3000, 6000, 6000)
